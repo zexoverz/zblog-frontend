@@ -27,7 +27,7 @@ function Content({articles}) {
         "All Categories",
         "Development",
         "NFT",
-        "Start-up",
+        "StartUp",
         "Blockchain",
         "Technology"
     ]

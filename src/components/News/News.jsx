@@ -1,8 +1,10 @@
 import { Box , Chip, Image, Skeleton, Stack, Typography} from '@mui/material'
 import { grey } from '@mui/material/colors'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function News({article}) {
+    const navigate = useNavigate();
 //   const [article, setArticle] = useState({
 //     "id": 19,
 //     "user": {
@@ -38,7 +40,7 @@ function News({article}) {
                 </Stack>
                 <Skeleton variant="text" />
                 <Skeleton variant="text" />
-                <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: grey}}>
+                <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: "grey"}}>
                     <Box Box display={'flex'} flexDirection={'row'} gap={2}>
                         <Box style={{width: "50px", height: "50px",}}>
                             <Skeleton variant="rectangular" width={"100%"} height={"100%"} style={{borderRadius: "15px"}}/>
@@ -65,10 +67,10 @@ function News({article}) {
 
             <Box display={'flex'} flexDirection={'column'} style={{ width: "50%"}} justifyContent={"space-between"} gap={2}>
                 <Stack direction="row" spacing={2}>
-                    <Chip label="Development" color="primary" variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
-                    <Chip label="NFT" color="warning"  variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
+                    <Chip label="Development" color="Development" variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
+                    <Chip label="NFT" color="NFT"  variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
                 </Stack>
-                <Typography variant="h3" style={{  textAlign: "left", fontWeight: "bold"}}>
+                <Typography variant="h3" style={{  textAlign: "left", fontWeight: "bold", cursor: "pointer"}} onClick={() => navigate(`/article/${article.id}`)}>
                     {article?.title}
                 </Typography>
                 <Typography variant="h6" style={{  textAlign: "left"}}>

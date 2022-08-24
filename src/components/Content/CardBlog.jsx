@@ -1,9 +1,13 @@
 import { Box, Chip, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function CardBlog({article}) {
-  return (
-    <Box display={'flex'} flexDirection={'column'} style={{width: "30%", padding: "0px 3%"}} gap={2}>
+
+    const navigate = useNavigate();
+
+    return (
+        <Box display={'flex'} flexDirection={'column'} style={{width: "30%", padding: "0px 3%"}} gap={2}>
             <Box style={{ width: "100%", height: "300px"}} >
                 <img src={article?.imgUrl} style={{width: "100%", height: "100%", backgroundSize: 'cover' }} />
             </Box>
@@ -15,7 +19,7 @@ function CardBlog({article}) {
                     <Chip label="Development" color="primary" variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
                     <Chip label="NFT" color="warning"  variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
                 </Stack>
-                <Typography variant="h5" style={{  textAlign: "left", fontWeight: "bold"}}>
+                <Typography variant="h5" style={{  textAlign: "left", fontWeight: "bold", cursor: "pointer"}} onClick={() => navigate(`/article/${article.id}`)}  >
                     {article?.title}
                 </Typography>
                 <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: "grey"}}>
@@ -30,10 +34,8 @@ function CardBlog({article}) {
                     {new Date(article?.createDate).toLocaleDateString()}
                 </Typography>
                 </Box>
-                
             </Box>
-
-    </Box>
+        </Box>
   )
 }
 

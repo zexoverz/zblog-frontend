@@ -6,7 +6,7 @@ import UserModal from '../User/UserModal';
 import toast from "react-hot-toast";
 import axiosInstance from '../../lib/AxiosInterface';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import { useNavigate } from "react-router-dom";
 
 let navbarStyle = {
   position: "sticky",
@@ -16,8 +16,7 @@ let navbarStyle = {
 function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("token") ? true : false);
-
+  const navigate = useNavigate();
 
   const closeLoginModal = () => {
     setLoginModal(false)
@@ -50,8 +49,6 @@ function Navbar() {
       data: userData
     })
 
-    console.log(data);
-
     closeRegisterModal();
   }
 
@@ -59,13 +56,9 @@ function Navbar() {
     localStorage.removeItem("token")
     localStorage.removeItem("username")
 
-    setIsAuth(false);
-
     toast.success("Logout Successfully");
+    navigate("/", { replace: true });
   }
-
-  useEffect(() => {
-  }, [isAuth])
   
 
   return (
@@ -77,9 +70,9 @@ function Navbar() {
           </Box>
 
           <div>
-          <NavButton variant="text">Home</NavButton>
+          <NavButton variant="text" onClick={() => navigate("/")}>Home</NavButton>
           <NavButton variant="text">About me</NavButton>
-          <NavButton variant="text">Project</NavButton>
+          <NavButton variant="text" onClick={() => navigate("/blog")}>Blog</NavButton>
           </div>
         </Box>
 
