@@ -75,23 +75,25 @@ function Blog() {
     }
 
     const createArticle = async () => {
-        toast.loading('Creating Article');
-        const {data} = await axiosInstance({
-            method: "POST",
-            url: `/article/create`,
-            data: {...form, 
-                content, 
-                createdBy: localStorage.getItem("username"),
-                views: []
-            },
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            }
-        })
+        if(formValidation()){
+            toast.loading('Creating Article');
+            const {data} = await axiosInstance({
+                method: "POST",
+                url: `/article/create`,
+                data: {...form, 
+                    content, 
+                    createdBy: localStorage.getItem("username"),
+                    views: []
+                },
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                }
+            })
 
-        if(data){
-            await dispatch(getArticles())
-            resetForm();
+            if(data){
+                await dispatch(getArticles())
+                resetForm();
+            }
         }
     }
 
@@ -99,7 +101,7 @@ function Blog() {
         toast.loading('Updating Article');
 
         const {data} = await axiosInstance({
-            method: "POST",
+            method: "PUT",
             url: `/article/update/${form.id}`,
             data: {
                 title: form.title,
@@ -119,6 +121,62 @@ function Blog() {
             await dispatch(getArticles())
             resetForm();
         }
+    }
+
+    const deleteArticle = async (id) => {
+        toast.loading('Deleting Article');
+
+        const res = await axiosInstance({
+            method: "DELETE",
+            url: `/article/delete/${id}`,
+            data: {},
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            }
+        })
+
+        if(res){
+            await dispatch(getArticles())
+            resetForm();
+        }
+    }
+
+
+    const formValidation = () => {
+        let isValidate = true;
+
+        if(form.title.length == 0){
+            toast.error("Title is required")
+
+            isValidate = false;
+        }
+
+        if(form.description.length == 0){
+            toast.error("Description is required")
+
+            isValidate = false;
+        }
+
+        if(form.categories.length == 0){
+            toast.error("Category is required")
+
+            isValidate = false;
+        }
+
+        if(form.imgUrl.length == 0){
+            toast.error("Img URL is required")
+
+            isValidate = false;
+        }
+
+        if(content.length == 0){
+            toast.error("Content is required")
+
+            isValidate = false;
+        }
+
+        return isValidate;
+
     }
 
     useEffect(() => {
@@ -161,11 +219,12 @@ function Blog() {
                     />
 
                     <TextareaAutosize
-                        minRows={5}
+                        minRows={4}
                         placeholder="Description"
                         value={form.description}
                         onChange={(e) => setForm({...form, description: e.target.value})}
-                        style={{ width: "100%", fontSize: "16px" }}
+                        style={{ width: "100%", fontSize: "18px" }}
+                        maxLength={255}
                     />
                     
                     <FormControl fullWidth>
@@ -228,7 +287,7 @@ function Blog() {
 
             <Box display={'flex'} flexDirection={'row'} style={{width: "100%", margin: "100px 0px"}} flexWrap="wrap" gap={5} justifyContent="center" mt={10} alignItems={"center"} justifyItems={"center"}>
                 {
-                    myArticles?.map(item => <ActionCard article={item} key={item.id} action={true} updateTrigger={onUpdate}/>)
+                    myArticles?.map(item => <ActionCard article={item} key={item.id} action={true} updateTrigger={onUpdate} deleteTrigger={deleteArticle}/>)
                 }
             </Box>
 

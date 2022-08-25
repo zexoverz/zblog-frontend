@@ -31,7 +31,6 @@ const articleSlice = createSlice({
     filterArticle: (state, action) => {
         const currentState = current(state)
 
-        console.log(currentState)
         if(action.payload == "All Categories"){
             return {
                 ...currentState,
@@ -77,10 +76,12 @@ export default articleSlice.reducer;
 export const {filterArticle} = articleSlice.actions;
 
 export const selectArticleById = (state, articleId) =>{
-    if(articleId == state.hero.id){
-        return state.hero
-    }else{
-        return state.articles.find(item => item.id == articleId)
+    if(state.articles.length != 0){
+        if(articleId == state.hero.id){
+            return state.hero
+        }else{
+            return state.articles.find(item => item.id == articleId)
+        }
     }
 }
 

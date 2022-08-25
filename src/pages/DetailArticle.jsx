@@ -6,11 +6,50 @@ import toast from "react-hot-toast";
 import axiosInstance from '../lib/AxiosInterface';
 import { useSelector } from "react-redux";
 import {selectArticleById} from "../store/ArticleSlice";
-
+import {useDispatch} from "react-redux"
+import {getArticles} from "../store/ArticleSlice";
+import {Toaster} from "react-hot-toast";
 
 function DetailArticle() {
     let params = useParams();
+    const dispatch = useDispatch();
     const detail = useSelector(({ articleReducer }) => selectArticleById(articleReducer, params.articleId));
+    const articles = useSelector(({ articleReducer }) => articleReducer.articles);
+
+    const viewCheck = async () => {
+        let user = localStorage.getItem("username");
+
+        if(!detail.views.includes(user)){
+            const res = await axiosInstance({
+                method: "PUT",
+                url: `/article/updateView/${detail.id}`,
+                data: {},
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                }
+            })
+    
+            if(res){
+                await dispatch(getArticles())
+            }
+        }
+    }
+
+    useEffect(() => {
+      if(localStorage.getItem("token")){
+        viewCheck()
+      }
+
+      if(articles.length == 0){
+        dispatch(getArticles());
+      }
+    }, [])
+
+
+    
+
+
+    
     
     if(!detail){
         return (
@@ -101,6 +140,10 @@ function DetailArticle() {
                     </Box>
                 </Box>
             </Box>
+
+            <Toaster
+                position="top-center"
+            />
         </div>
     )
 }
