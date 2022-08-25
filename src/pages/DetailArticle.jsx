@@ -57,7 +57,7 @@ function DetailArticle() {
             <div style={{textAlign: "center", alignItems: "center", padding: "0px 100px"}}>
             <Navbar />
             <Box display={'flex'} flexDirection={'column'} gap={2} alignItems={"center"}>
-                <Box display={'flex'} flexDirection={'column'} style={{width: "45%", height: "100%", padding: "5% 3%"}} gap={2}>
+                <Box display={'flex'} flexDirection={'column'} style={{width: "60%", height: "100%", padding: "5% 3%"}} gap={2}>
                     <Box style={{ width: "100%", height: "350px"}} >
                         <Skeleton variant="rectangular" width={"100%"} height={"100%"} style={{backgroundSize: "cover"}} />
                     </Box>
