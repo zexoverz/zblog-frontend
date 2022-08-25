@@ -4,26 +4,13 @@ import { useParams } from "react-router-dom";
 import Navbar from '../components/Navbar/Navbar';
 import toast from "react-hot-toast";
 import axiosInstance from '../lib/AxiosInterface';
+import { useSelector } from "react-redux";
+import {selectArticleById} from "../store/ArticleSlice";
 
 
 function DetailArticle() {
     let params = useParams();
-    const [detail, setDetail] = useState(null);
-
-
-    useEffect(() => {
-      getDetailArticle()
-    }, [])
-
-    const getDetailArticle = async () => {
-        toast.loading('Preparing Article');
-        const {data} = await axiosInstance({
-            method: "GET",
-            url: `/article/getDetail/${params.articleId}`,
-        })
-
-        setDetail(data);
-    }
+    const detail = useSelector(({ articleReducer }) => selectArticleById(articleReducer, params.articleId));
     
     if(!detail){
         return (
@@ -79,16 +66,19 @@ function DetailArticle() {
 
                     <div style={{margin: "0px 2%"}}></div>
 
-                    <Box display={'flex'} flexDirection={'column'} style={{ width: "100%"}} justifyContent={"space-between"} gap={2}>
+                    <Box display={'flex'} flexDirection={'column'} style={{ width: "100%", textAlign: "left"}} justifyContent={"space-between"} gap={2}>
                         <Stack direction="row" spacing={2}>
-                            <Chip label="Development" color="primary" variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
-                            <Chip label="NFT" color="warning"  variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
+                        {
+                            detail?.categories.map(item => (
+                                <Chip label={item} color={item} variant="outlined" style={{ fontWeight: "bold"}} size="small" />
+                            ))
+                        }
                         </Stack>
                         
                         <Typography variant="h3" style={{  textAlign: "left", fontWeight: "bold", cursor: "pointer"}}  >
                             {detail?.title}
                         </Typography>
-                        <Typography variant="h6" style={{  textAlign: "left", color: "grey"}} > {detail?.content} </Typography>
+                        <Typography variant="h6" style={{  textAlign: "left", color: "grey"}} > {detail?.description} </Typography>
                         
                         <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: "grey"}}>
                             <Box Box display={'flex'} flexDirection={'row'} gap={2}>
@@ -104,7 +94,10 @@ function DetailArticle() {
                         </Box>
 
                         <Divider />
-                        <Typography variant="h6" style={{  textAlign: "left"}} > CONTENT </Typography>
+                        {/* <Typography variant="h6" style={{  textAlign: "left"}} >  </Typography> */}
+                        <div dangerouslySetInnerHTML={{__html: detail?.content}} > 
+                            
+                        </div>
                     </Box>
                 </Box>
             </Box>

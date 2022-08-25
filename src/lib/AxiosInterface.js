@@ -19,10 +19,10 @@ axiosInstance.interceptors.response.use(function (response) {
   return response.data
 }, function (error) {
     toast.dismiss();
-    console.log(error, "ERROR")
+    toast.error(error.response.data.message?? "Error");
+    console.log(error)
     if (error.response?.status >= 400) {
-        
-        toast.error(error.response.data.message?? "Error");
+      return Promise.reject(error)
     }
 
     if (error.response.status == 401) {

@@ -4,37 +4,23 @@ import Content from '../components/Content/Content';
 import Hero from '../components/Hero/Hero';
 import Navbar from '../components/Navbar/Navbar';
 import News from '../components/News/News';
-import axiosInstance from '../lib/AxiosInterface';
 import toast, {Toaster} from 'react-hot-toast';
+import {getArticles} from "../store/ArticleSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
-  const [articles, setArticles] = useState([]);
-  const [hero, setHero] = useState(null);
+  const dispatch = useDispatch();
+  const articles = useSelector(({ articleReducer }) => articleReducer.articles);
+  const hero = useSelector(({ articleReducer }) => articleReducer.hero);
 
 
   useEffect(() => {
     if(articles.length == 0){
-      getArticles();
+      dispatch(getArticles());
     }
     
   }, [])
 
-  const getArticles = async () => {
-    toast.loading('Preparing Article');
-    const {data} = await axiosInstance({
-      method: "GET",
-      url: `/article/getAll`,
-    })
-
-
-    if(data.length > 0){
-      let firstData = data.splice(data.length-1, 1);
-
-      setArticles(data)
-      setHero({...firstData[0]})
-    }
-  }
-  
 
 
   return (
@@ -44,7 +30,7 @@ function Home() {
         <Hero />
         <News article={hero}/>
       </Box>
-      <Content articles={articles}/>
+      <Content/>
       <Toaster
         position="top-center"
       />

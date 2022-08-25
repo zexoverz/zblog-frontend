@@ -67,14 +67,17 @@ function News({article}) {
 
             <Box display={'flex'} flexDirection={'column'} style={{ width: "50%"}} justifyContent={"space-between"} gap={2}>
                 <Stack direction="row" spacing={2}>
-                    <Chip label="Development" color="Development" variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
-                    <Chip label="NFT" color="NFT"  variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
+                    {
+                        article?.categories.map(item => (
+                            <Chip label={item} color={item} variant="outlined" style={{ fontWeight: "bold"}} size="medium" />
+                        ))
+                    }
                 </Stack>
                 <Typography variant="h3" style={{  textAlign: "left", fontWeight: "bold", cursor: "pointer"}} onClick={() => navigate(`/article/${article.id}`)}>
                     {article?.title}
                 </Typography>
                 <Typography variant="h6" style={{  textAlign: "left"}}>
-                    {article?.content}
+                    {article?.description}
                 </Typography>
                 <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: "grey"}}>
                     <Box Box display={'flex'} flexDirection={'row'} gap={2}>
