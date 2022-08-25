@@ -99,7 +99,7 @@ function DetailArticle() {
             <Navbar />
 
             <Box display={'flex'} flexDirection={'column'} gap={2} alignItems={"center"}>
-                <Box display={'flex'} flexDirection={'column'} style={{width: "45%", padding: "5% 3%"}} gap={2}>
+                <Box display={'flex'} flexDirection={'column'} style={{width: "60%", padding: "5% 3%"}} gap={2}>
                     <Box style={{ width: "100%", height: "100%"}} >
                         <img src={detail?.imgUrl} style={{width: "100%", height: "100%", backgroundSize: 'cover' }} />
                     </Box>
