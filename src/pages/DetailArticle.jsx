@@ -36,13 +36,14 @@ function DetailArticle() {
     }
 
     useEffect(() => {
-      if(localStorage.getItem("token")){
-        viewCheck()
-      }
+        window.scrollTo(0, 0)
+        if(localStorage.getItem("token")){
+            viewCheck()
+        }
 
-      if(articles.length == 0){
-        dispatch(getArticles());
-      }
+        if(articles.length == 0){
+            dispatch(getArticles());
+        }
     }, [])
 
 
