@@ -21,7 +21,8 @@ function Blog() {
         description: "",
         imgUrl: "",
         categories: [],
-        views: []
+        views: [],
+        comments: []
     })
     const [content, setContent] = useState("");
     const [formType, setFormType] = useState("Create")
@@ -57,6 +58,8 @@ function Blog() {
             description: "",
             imgUrl: "",
             categories: [],
+            views: [],
+            comments: []
         })
         setContent("")
     }
@@ -110,7 +113,8 @@ function Blog() {
                 categories: form.categories,
                 content: content,
                 views: form.views,
-                createdBy: localStorage.getItem("username")
+                createdBy: localStorage.getItem("username"),
+                comments: []
             },
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -202,8 +206,8 @@ function Blog() {
 
             <Box display={'flex'} flexDirection={"column"} justifyContent={'center'} alignItems={"center"} style={{width: "100%", margin: "20px 0px"}}>
                 
-                <Box display={'flex'} flexDirection={"column"} gap={5} style={{width: "60%"}}>
-                    <Typography variant='h3' textAlign={'center'} style={{color: "#5138EE"}}>{formType} Blog</Typography>
+                <Box display={'flex'} flexDirection={"column"} gap={5} style={{width: "50%"}}>
+                    <Typography variant='h4' textAlign={'center'} style={{color: "#5138EE"}}>{formType} Blog</Typography>
                     {
                         formType == "Update" ? (
                             <NavButton onClick={onCreate}>Back to create</NavButton>
@@ -223,7 +227,7 @@ function Blog() {
                         placeholder="Description"
                         value={form.description}
                         onChange={(e) => setForm({...form, description: e.target.value})}
-                        style={{ width: "100%", fontSize: "18px" }}
+                        style={{ width: "100%", fontSize: "16px" }}
                         maxLength={255}
                     />
                     
@@ -280,7 +284,7 @@ function Blog() {
             {
                 myArticles.length != 0 &&
                 (
-                    <Typography variant='h3' textAlign={'center'} style={{color: "#5138EE"}}>My Blog</Typography>
+                    <Typography variant='h4' textAlign={'center'} style={{color: "#5138EE"}}>My Blog</Typography>
                 )
             }
 

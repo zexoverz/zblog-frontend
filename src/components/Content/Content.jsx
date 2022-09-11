@@ -11,8 +11,8 @@ let contentStyle = {
 
 let selectedStyle = {
     color: "#5138EE",
-    height: "60px",
-    minWidth: "140px",
+    height: "40px",
+    minWidth: "120px",
     backgroundColor: "white",
     marginRight: "20px",
     borderRadius: "40px",
@@ -40,9 +40,6 @@ function Content({articles}) {
         setSelected(category);
     }
     
-    useEffect(() => {
-        console.log(filteredArticle, "FILTEREDDD")
-    }, [filteredArticle])
 
     return (
         <Box display={'flex'} flexDirection={'column'} style={contentStyle} alignItems="center" gap={10}>
@@ -53,12 +50,6 @@ function Content({articles}) {
                   ))
                 }
             </Box>
-
-            {/* <Box display={'flex'} flexDirection={'row'} style={{width: "100%"}} flexWrap="wrap" gap={5} justifyContent="center">
-                    {
-                        articles?.map(item => <CardBlog article={item} key={item.id}/>)
-                    }
-            </Box> */}
 
             <Box display={'flex'} flexDirection={'row'} style={{width: "100%", }} flexWrap="wrap" gap={5} justifyContent="center" alignItems={"center"} justifyItems={"center"}>
                 {

@@ -9,9 +9,9 @@ let heroStyle = {
 function Hero() {
   return (
     <Box display={'flex'} flexDirection={'column'} style={heroStyle}> 
-      <Typography style={{color: "#5138EE", fontSize: "25px", fontWeight: "bold"}}>OUR BLOG</Typography>
+      <Typography style={{color: "#5138EE", fontSize: "20px", fontWeight: "bold"}}>OUR BLOG</Typography>
       <div style={{margin: "20px 0px"}} />
-      <Typography style={{fontWeight: "bold", fontSize: "68px"}}>Insight and advice<br/> from our expert team. </Typography>
+      <Typography style={{fontWeight: "bold", fontSize: "50px"}}>Insight and advice<br/> from our expert team. </Typography>
     </Box>
   )
 }

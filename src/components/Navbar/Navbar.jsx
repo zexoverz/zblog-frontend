@@ -64,9 +64,9 @@ function Navbar() {
   return (
     <Box display={'flex'} style={navbarStyle} flexDirection={'row'} justifyContent={'space-between'} p={2} > 
         <Box display={'flex'} flexDirection={'row'} style={{width: "50%"}} justifyContent={'space-between'}  >
-          <Box display={'flex'} flexDirection={'row'} style={{width: "fit-content", padding: "10px"}}> 
-            <BoltIcon style={{fontSize: '40px', color: "#5138EE"}} />
-            <Typography variant="h5" style={{marginLeft: '5px', marginTop: "5px"}}>Zblog</Typography>
+          <Box display={'flex'} flexDirection={'row'} style={{width: "fit-content"}}> 
+            <BoltIcon style={{fontSize: '35px', color: "#5138EE"}} />
+            <Typography variant="h6" style={{marginLeft: '5px', marginTop: "5px"}}>Zblog</Typography>
           </Box>
 
           <div>
@@ -85,11 +85,11 @@ function Navbar() {
           ) : (
             <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"}>
               <Box Box display={'flex'} flexDirection={'row'} gap={2}>
-                <Box style={{width: "50px", height: "50px",}}>
-                  <img src={`http://adorableavatars.com/avatars/${localStorage.getItem("username")}`} width="100%" height="100%" style={{borderRadius: "15px"}}></img>
+                <Box style={{width: "25px", height: "25px",}}>
+                  <img src={`http://adorableavatars.com/avatars/${localStorage.getItem("username")}`} width="100%" height="100%" style={{borderRadius: "10px"}}></img>
                 </Box>
               </Box>     
-              <Typography variant="h6" style={{  textAlign: "left"}}>{localStorage.getItem("username")} </Typography>
+              <Typography variant="h7" style={{  textAlign: "left"}}>{localStorage.getItem("username")} </Typography>
 
               <NavButton onClick={logout} > 
                 <LogoutIcon style={{color: "red"}} />

@@ -8,10 +8,10 @@ function ActionCard({article, action, updateTrigger, deleteTrigger}) {
     const navigate = useNavigate();
 
     return (
-        <Card sx={{ maxWidth: 450, textAlign: "left", }}>
+        <Card sx={{ maxWidth: 350, textAlign: "left", }}>
         <CardMedia
             component="img"
-            style={{width: "100%", height: "250px",}}
+            style={{width: "100%", height: "200px",}}
             image={article.imgUrl}
         />
         <CardContent>
@@ -23,18 +23,18 @@ function ActionCard({article, action, updateTrigger, deleteTrigger}) {
                         ))
                     }
                 </Stack>
-                <Typography gutterBottom variant="h6" component="div" style={{height: "60px", textAlign: "left", fontWeight: "bold", cursor: "pointer"}}  color="text.bold" onClick={() => navigate(`/article/${article.id}`)} >
+                <Typography gutterBottom variant="h7" component="div" style={{height: "50px", textAlign: "left", fontWeight: "bold", cursor: "pointer"}}  color="text.bold" onClick={() => navigate(`/article/${article.id}`)} >
                 {article.title}
                 </Typography>
-                <Typography variant="h8"  style={{overflow: "hidden", textOverflow: "ellipsis", WebkitLineClamp: 4, WebkitBoxOrient: "vertical", display: "-webkit-box", height: "90px"}}>
+                <Typography variant="h8"  style={{overflow: "hidden", textOverflow: "ellipsis", WebkitLineClamp: 4, WebkitBoxOrient: "vertical", display: "-webkit-box", height: "90px", fontSize: "13px"}}>
                 {article.description}
                 </Typography>
 
                 <Box display={'flex'} flexDirection={'row'} justifyContent={"space-between"}> 
                     <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: "grey"}}>
                         <Box Box display={'flex'} flexDirection={'row'} gap={2}>
-                            <Box style={{width: "40px", height: "40px",}}>
-                                <img src={`http://adorableavatars.com/avatars/${article?.user.username}`} width="100%" height="100%" style={{borderRadius: "15px"}}></img>
+                            <Box style={{width: "35px", height: "35px",}}>
+                                <img src={`http://adorableavatars.com/avatars/${article?.user.username}`} width="100%" height="100%" style={{borderRadius: "10px"}}></img>
                             </Box>
                             </Box>
                             <Typography variant="h8" style={{  textAlign: "left"}}> {article?.user.username} </Typography>

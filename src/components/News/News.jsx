@@ -73,28 +73,28 @@ function News({article}) {
                         ))
                     }
                 </Stack>
-                <Typography variant="h3" style={{  textAlign: "left", fontWeight: "bold", cursor: "pointer"}} onClick={() => navigate(`/article/${article.id}`)}>
+                <Typography variant="h4" style={{  textAlign: "left", fontWeight: "bold", cursor: "pointer"}} onClick={() => navigate(`/article/${article.id}`)}>
                     {article?.title}
                 </Typography>
-                <Typography variant="h6" style={{  textAlign: "left"}}>
+                <Typography variant="h7" style={{  textAlign: "left"}}>
                     {article?.description}
                 </Typography>
                 
                 <Box display={'flex'} flexDirection={'row'} justifyContent={"space-between"}>
                     <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: "grey"}}>
                         <Box Box display={'flex'} flexDirection={'row'} gap={2}>
-                            <Box style={{width: "50px", height: "50px",}}>
-                                <img src={`http://adorableavatars.com/avatars/${article?.user.username}`} width="100%" height="100%" style={{borderRadius: "15px"}}></img>
+                            <Box style={{width: "35px", height: "35px",}}>
+                                <img src={`http://adorableavatars.com/avatars/${article?.user.username}`} width="100%" height="100%" style={{borderRadius: "10px"}}></img>
                             </Box>
                         </Box>
-                        <Typography variant="h6" style={{  textAlign: "left"}}> {article?.user.username} </Typography>
+                        <Typography variant="h7" style={{  textAlign: "left"}}> {article?.user.username} </Typography>
                         <Typography> | </Typography>
-                        <Typography variant="h6" style={{  textAlign: "left"}}>
+                        <Typography variant="h7" style={{  textAlign: "left"}}>
                         {new Date(article?.createDate).toLocaleDateString()}
                     </Typography>
                     </Box>
                     <Box display={'flex'} flexDirection={'row'} gap={2} alignItems={"center"} style={{color: "grey"}}>
-                        <Typography variant="h6" style={{  textAlign: "left"}}> Viewed {article?.views.length}x </Typography>
+                        <Typography variant="h7" style={{  textAlign: "left"}}> Viewed {article?.views.length}x </Typography>
                     </Box>
                 </Box>
                 

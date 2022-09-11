@@ -2,7 +2,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast';
 
 const axiosInstance = axios.create({
-  baseURL: "https://zblog-backend.herokuapp.com/zblog",
+  baseURL: "https://zblog-backend.herokuapp.com/zblog/",
   headers: {
     'Content-Type': 'application/json',
   }
